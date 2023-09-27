@@ -1,4 +1,4 @@
-# python
+# blob-effect
 
 ## 1. Clone & Prepare .env
 
@@ -6,9 +6,15 @@
 git clone XXX
 ```
 
-.env file should be as follows:
+## 2. Create .env
 
-## 2. Docker Build & Run
+- copy .env.example to .env
+
+```bash
+cp .env.example .env
+```
+
+## 3. Docker Build & Run
 
 ```sh
 docker-compose build --no-cache
