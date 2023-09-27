@@ -1,6 +1,6 @@
 version: "1.0"
 services:
-  project:
+  project-blob-effect:
     build: .
     volumes:
       - .:/root/workspace
