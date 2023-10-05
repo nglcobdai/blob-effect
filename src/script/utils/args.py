@@ -17,7 +17,7 @@ def get_args():
     parser.add_argument(
         "--img",
         type=str,
-        default="demo.png",
+        default="demo1.png",
         help="image file name (default: demo.png)",
     )
     return parser.parse_args()
