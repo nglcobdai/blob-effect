@@ -1,6 +1,9 @@
 ARG python_image_v="python:3.10-buster"
 FROM ${python_image_v}
 
+# bashをデフォルトのシェルとして設定
+SHELL ["/bin/bash", "-c"]
+
 ENV LANG C.UTF-8
 ENV LANGUAGE en_US
 
@@ -17,4 +20,13 @@ ENV PYTHONPATH "/root/workspace/src:$PYTHONPATH"
 
 RUN poetry install --no-root
 
+# 環境変数の設定
+COPY .env $WORKDIR/
+RUN source $WORKDIR/.env
+
 RUN python -m ipykernel install --user --name python3.10 --display-name "Python 3.10.12"
+
+# libGLのインストール(opencvのため)
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
