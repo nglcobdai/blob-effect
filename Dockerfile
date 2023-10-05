@@ -25,3 +25,8 @@ COPY .env $WORKDIR/
 RUN source $WORKDIR/.env
 
 RUN python -m ipykernel install --user --name python3.10 --display-name "Python 3.10.12"
+
+# libGLのインストール(opencvのため)
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
