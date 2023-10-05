@@ -1,1 +1,6 @@
 # Custom Dictionary Words
+Catmull
+getpixel
+pbar
+polylines
+tqdm
