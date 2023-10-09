@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 
 from script.blob_effect.blob_effect import BlobEffect
+from script.blob_effect.preprocess import preprocess
 
 
 def blob_effect(args, config):
@@ -19,7 +20,11 @@ def blob_effect(args, config):
 
     # 画像を読み込む
     path = root / filename
-    img = np.array(Image.open(path))
+    img = Image.open(path)
+
+    img = preprocess(img)
+
+    img = np.array(img)
 
     # blobクラスを作成する
     blob_effect_manager = BlobEffect(config, img)

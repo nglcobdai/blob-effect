@@ -66,7 +66,7 @@ docker-compose exec project-blob-effect bash
   python3 src/main.py --config config --img demo1.png
   ```
 
-  |  Option  |   Default   | Description                                          |
-  | :------: | :---------: | :--------------------------------------------------- |
-  | --config |  `config`   | config file path<br>reference `./src/cfg/config.yml` |
-  |  --img   | `demo1.png` | image file path<br>reference `./data/demo1.png`      |
+  |  Option  |   Default   | Description                                      |
+  | :------: | :---------: | :----------------------------------------------- |
+  | --config |  `config`   | config file path<br>reference `./cfg/config.yml` |
+  |  --img   | `demo1.png` | image file path<br>reference `./data/demo1.png`  |

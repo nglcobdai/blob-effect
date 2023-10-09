@@ -12,7 +12,7 @@ def load_config(file_name):
     Returns:
         Dict[*]: config
     """
-    root = Path(os.environ["ROOT_DIR"]) / "src/cfg" / file_name
+    root = Path(os.environ["ROOT_DIR"]) / "cfg" / file_name
     config_path = root.with_suffix(".yml")
     config = Config(config_path)
     return config
