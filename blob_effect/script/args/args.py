@@ -9,15 +9,10 @@ def get_args():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "-c",
         "--config",
         type=str,
-        default="config",
+        default="demo1",
         help="config file name (default: config)",
-    )
-    parser.add_argument(
-        "--img",
-        type=str,
-        default="demo1.png",
-        help="image file name (default: demo.png)",
     )
     return parser.parse_args()

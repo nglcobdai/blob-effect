@@ -1,8 +1,8 @@
 {
-  "name": "project-blob-effect",
+  "name": "project",
   "dockerComposeFile": "../docker-compose.yml",
   "workspaceFolder": "/root/workspace",
-  "service": "project-blob-effect",
+  "service": "project",
   "customizations": {
     // Configure properties specific to VS Code.
     "vscode": {

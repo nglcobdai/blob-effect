@@ -1,32 +1,29 @@
 import os
-import pprint
 
 import yaml
 
 
 class Config:
-    def __init__(self, path):
+    def __init__(self, config):
         """Config
 
         Args:
-            path (str): config file path
+            config (*): config file
         """
-        self.config = yaml.safe_load(open(path, "r"))
+        self.config = config
 
-        pprint.pprint(self.config)
-
-    def get(self, key, default=None):
+    def get(self, key, default=None, split="/"):
         """Get config
 
         Args:
-            key (str): 辞書のキーを'/'で区切ってい指定
+            key (str): 辞書のキーを'.'で区切ってい指定
             default (*, optional): デフォルト値 (None).
 
         Returns:
             (*): str, int, float, list, dict, ...
         """
         # Split the key based on slashes
-        keys = key.split("/")
+        keys = key.split(split)
 
         # Create a pointer to traverse the dictionary
         _config = self.config
@@ -44,19 +41,19 @@ class Config:
         """Update config
 
         Args:
-            key (str): 辞書のキーを'/'で区切ってい指定
+            key (str): 辞書のキーを'.'で区切ってい指定
             value (*): str, int, float, list, dict, ...
 
         Examples:
             >>> config = Config(args)
             >>> hasattr(config.config['model'], 'id')
             False
-            >>> config.update("model/id", "test")
+            >>> config.update("model.id", "test")
             >>> print(config.config['model']['id'])
             test
         """
         # Split the key based on slashes
-        keys = key.split("/")
+        keys = key.split(".")
 
         # Create a pointer to traverse the dictionary
         _config = self.config
