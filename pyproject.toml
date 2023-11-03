@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "project-blob-effect"
+name = "project"
 version = "0.2.0"
 description = ""
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
