@@ -43,12 +43,16 @@ docker-compose exec project-blob-effect bash
 
 ### 4. Run Project
 
-- run with `./cfg/demo1.yml`
+run with `./cfg/demo1.yml`
 
-  ```sh
-  python3 src/main.py -c demo1
-  ```
+```sh
+python3 src/main.py -c demo1
+```
 
-  |      Option       | Default | Description                                     |
-  | :---------------: | :-----: | :---------------------------------------------- |
-  | `-c` / `--config` | `demo1` | config file path<br>reference `./cfg/demo1.yml` |
+|      Option       | Default | Description                                     |
+| :---------------: | :-----: | :---------------------------------------------- |
+| `-c` / `--config` | `demo1` | config file path<br>reference `./cfg/demo1.yml` |
+
+- If you want to run with another config file, please prepare it in `./cfg/` directory.
+  - Rules for writing config files are [here](./docs/config-rule.md).
+- If you want to run with another image file, please prepare it in `./data/` directory.
