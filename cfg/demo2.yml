@@ -1,0 +1,53 @@
+- # load
+  TASK: utils.Load.LoadImage
+  PARAM:
+    PATH: data/demo2.jpeg
+    MODE: RGB
+- # preprocessing
+  TASK: vision.Preprocess
+  PROCESS:
+    - # preprocessing.1
+      TASK: Resize
+      PARAM:
+        IMAGE: LoadImage
+        SIZE:
+          WIDTH: 256
+          HEIGHT: 256
+- # effect
+  TASK: vision.Effect
+  PROCESS:
+    - # effect.1
+      TASK: BlobEffect
+      ID: 1
+      PARAM:
+        IMAGE: Resize
+        BLOB_NUM: 500 # number of blobs
+        RADIUS: # radius of blobs
+          MIN: 5
+          MAX: 10
+        DENSE: # amount of points per blob
+          MIN: 10
+          MAX: 100
+        THICKNESS: # thickness of blobs
+          MIN: 1
+          MAX: 1
+    - # effect.2
+      TASK: BlobEffect
+      ID: 2
+      PARAM:
+        IMAGE: BlobEffect.1
+        BLOB_NUM: 30 # number of blobs
+        RADIUS: # radius of blobs
+          MIN: 10
+          MAX: 20
+        DENSE: # amount of points per blob
+          MIN: 10
+          MAX: 10
+        THICKNESS: # thickness of blobs
+          MIN: 3
+          MAX: 3
+- # save
+  TASK: utils.Save.SaveImage
+  PARAM:
+    IMAGE: BlobEffect.2
+    PATH: output/demo2_blob.jpeg
