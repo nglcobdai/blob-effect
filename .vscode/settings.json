@@ -25,7 +25,7 @@
   "cSpell.customDictionaries": {
     "custom-dictionary-workspace": {
       "name": "custom-dictionary-workspace",
-      "path": "${workspaceFolder:workspace}/.cspell/custom-dictionary-workspace.txt",
+      "path": "${workspaceFolder:blob-effect}/.cspell/custom-dictionary-workspace.txt",
       "addWords": true,
       "scope": "workspace"
     }

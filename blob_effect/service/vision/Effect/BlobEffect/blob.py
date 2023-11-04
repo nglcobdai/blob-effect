@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from src.script.utils.spline import catmull_rom_spline
+from blob_effect.service.vision.Effect.BlobEffect.spline import catmull_rom_spline
 
 
 class Blob:

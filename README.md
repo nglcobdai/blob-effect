@@ -16,17 +16,6 @@
 |  1  | ![demo1](./data/demo1.png)  | ![demo1](./output/demo1_blob.png)  |
 |  2  | ![demo2](./data/demo2.jpeg) | ![demo2](./output/demo2_blob.jpeg) |
 
-|     | Parameter | Value(min/max) |
-| :-: | :-------: | :------------: |
-|  1  | blob_num  |      1500      |
-|     |  radius   |      5/20      |
-|     |   dense   |     10/100     |
-|     | thickness |      1/1       |
-|  2  | blob_num  |      500       |
-|     |  radius   |      5/30      |
-|     |   dense   |     10/50      |
-|     | thickness |      1/1       |
-
 ## Getting Started
 
 ### 1. Clone & Prepare .env
@@ -54,19 +43,16 @@ docker-compose exec project-blob-effect bash
 
 ### 4. Run Project
 
-- normal run
+run with `./cfg/demo1.yml`
 
-  ```sh
-  python3 src/main.py
-  ```
+```sh
+python3 src/main.py -c demo1
+```
 
-- optional arguments
+|      Option       | Default | Description                                     |
+| :---------------: | :-----: | :---------------------------------------------- |
+| `-c` / `--config` | `demo1` | config file path<br>reference `./cfg/demo1.yml` |
 
-  ```sh
-  python3 src/main.py --config config --img demo1.png
-  ```
-
-  |  Option  |   Default   | Description                                          |
-  | :------: | :---------: | :--------------------------------------------------- |
-  | --config |  `config`   | config file path<br>reference `./src/cfg/config.yml` |
-  |  --img   | `demo1.png` | image file path<br>reference `./data/demo1.png`      |
+- If you want to run with another config file, please prepare it in `./cfg/` directory.
+  - Rules for writing config files are [here](./docs/config-rule.md).
+- If you want to run with another image file, please prepare it in `./data/` directory.

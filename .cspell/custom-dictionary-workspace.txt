@@ -1,5 +1,6 @@
 # Custom Dictionary Words
 Catmull
+dsize
 getpixel
 pbar
 polylines
