@@ -38,7 +38,7 @@ $ cp .env{.example,}
 ```sh
 docker-compose build --no-cache
 docker-compose up -d
-docker-compose exec project-blob-effect bash
+docker-compose exec project
 ```
 
 ### 4. Run Project
