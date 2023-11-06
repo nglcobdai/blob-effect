@@ -5,7 +5,7 @@ from blob_effect.service.vision.Effect.BlobEffect.spline import catmull_rom_spli
 
 
 class Blob:
-    def __init__(self, img, x, y, col, r, dense, thickness):
+    def __init__(self, img, x, y, col, r, dense, thickness, is_fill=False):
         """Blob
 
         Args:
@@ -16,6 +16,7 @@ class Blob:
             r (int): 半径
             dense (int): blob毎の点の数
             thickness (int): 線の太さ
+            is_fill (bool): 塗りつぶすかどうか(default: False)
         """
         self.img = img
         self.x = x
@@ -24,6 +25,7 @@ class Blob:
         self.dense = dense
         self.thickness = thickness
         self.col = col
+        self.is_fill = is_fill
 
         self.starting_angle = np.random.uniform(0, 2 * np.pi)
         self.diffX = np.random.uniform(0.3, 1.8)
@@ -63,10 +65,17 @@ class Blob:
         spline_points = np.array(spline_points, dtype=np.int32).reshape(-1, 1, 2)
 
         # Draw the spline curve
-        cv2.polylines(
-            self.img,
-            [spline_points],
-            isClosed=True,
-            color=self.col,
-            thickness=self.thickness,
-        )
+        if self.is_fill:
+            cv2.fillConvexPoly(
+                self.img,
+                spline_points,
+                color=self.col,
+            )
+        else:
+            cv2.polylines(
+                self.img,
+                [spline_points],
+                isClosed=True,
+                color=self.col,
+                thickness=self.thickness,
+            )
