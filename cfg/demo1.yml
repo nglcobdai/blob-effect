@@ -24,9 +24,6 @@
         RADIUS: # radius of blobs
           MIN: 5
           MAX: 20
-        DENSE: # amount of points per blob
-          MIN: 10
-          MAX: 100
         THICKNESS: # thickness of blobs
           MIN: 1
           MAX: 1

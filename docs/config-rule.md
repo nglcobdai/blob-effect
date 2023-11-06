@@ -107,13 +107,12 @@ PARAM:
 
 #### パラメータ一覧
 
-| パラメータ名 | 説明                               | デフォルト値 | 備考                   |
-| :----------- | :--------------------------------- | :----------- | ---------------------- |
-| `IMAGE`      | 使用画像の`KEY`                    | ---          |                        |
-| `BLOB_NUM`   | Blob の数                          | 100          |                        |
-| `RADIUS`     | Blob の半径                        | ---          |                        |
-| `DENSE`      | 各 Blob 描画のためのプロットの個数 | ---          | 大きいほど描画速度低下 |
-| `THICKNESS`  | Blob の太さ                        | ---          |                        |
+| パラメータ名 | 説明            | デフォルト値 | 備考 |
+| :----------- | :-------------- | :----------- | ---- |
+| `IMAGE`      | 使用画像の`KEY` | ---          |      |
+| `BLOB_NUM`   | Blob の数       | 100          |      |
+| `RADIUS`     | Blob の半径     | ---          |      |
+| `THICKNESS`  | Blob の太さ     | ---          |      |
 
 #### 設定例
 
@@ -128,9 +127,6 @@ PARAM:
   RADIUS:
     MIN: 5
     MAX: 30
-  DENSE:
-    MIN: 10
-    MAX: 50
   THICKNESS:
     MIN: 1
     MAX: 3
@@ -211,9 +207,6 @@ PARAM:
         RADIUS:
           MIN: 5
           MAX: 30
-        DENSE:
-          MIN: 10
-          MAX: 50
         THICKNESS:
           MIN: 1
           MAX: 3
@@ -225,9 +218,6 @@ PARAM:
         RADIUS:
           MIN: 20
           MAX: 30
-        DENSE:
-          MIN: 10
-          MAX: 100
         THICKNESS:
           MIN: 5
           MAX: 10

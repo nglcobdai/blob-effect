@@ -21,13 +21,10 @@
       ID: 1
       PARAM:
         IMAGE: Resize
-        BLOB_NUM: 500 # number of blobs
+        BLOB_NUM: 1500 # number of blobs
         RADIUS: # radius of blobs
           MIN: 5
-          MAX: 10
-        DENSE: # amount of points per blob
-          MIN: 10
-          MAX: 100
+          MAX: 20
         THICKNESS: # thickness of blobs
           MIN: 1
           MAX: 1
@@ -40,12 +37,7 @@
         RADIUS: # radius of blobs
           MIN: 10
           MAX: 20
-        DENSE: # amount of points per blob
-          MIN: 10
-          MAX: 10
-        THICKNESS: # thickness of blobs
-          MIN: 3
-          MAX: 3
+        IS_FILL: True
 - # save
   TASK: utils.Save.SaveImage
   PARAM:
