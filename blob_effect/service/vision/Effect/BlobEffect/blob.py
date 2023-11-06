@@ -33,6 +33,8 @@ class Blob:
         self.offsetX = np.random.uniform(-self.r / 2, self.r / 2)
         self.offsetY = np.random.uniform(-self.r / 2, self.r / 2)
 
+        self.dense = int(np.ceil(self.r * 3) % 360)
+
         self.pts = []
 
     def __call__(self):
@@ -42,7 +44,7 @@ class Blob:
 
     def setup(self):
         """blobを更新する"""
-        angles = np.linspace(0, 2 * np.pi, 60, endpoint=False)
+        angles = np.linspace(0, 2 * np.pi, self.dense, endpoint=False)
         xs = np.sin(np.sin(np.cos(angles))) * self.r + self.x + self.offsetX
         ys = np.sin(np.sin(np.sin(angles))) * self.r + self.y + self.offsetY
         self.pts = np.c_[xs, ys]
