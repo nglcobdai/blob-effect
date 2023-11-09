@@ -2,10 +2,10 @@ from matplotlib import pyplot as plt
 
 
 def ShowImage(results, cfg):
-    img = results[cfg.get("IMAGE")]
-    title = cfg.get("TITLE", None)
+    key = cfg.get("IMAGE")
+    img = results[key]
 
-    plt.title(title)
+    plt.title(key)
     plt.imshow(img)
 
     plt.axis("off")
