@@ -47,4 +47,4 @@ class Pipeline:
             _name = name if id is None else f"{name}.{id}"
             results[_name] = func(results, Config(param))
 
-        return results
+        self.results = results
