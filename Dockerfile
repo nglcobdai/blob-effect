@@ -1,32 +1,38 @@
-ARG python_image_v="python:3.10-buster"
-FROM ${python_image_v}
+FROM python:3.10
 
-# bashをデフォルトのシェルとして設定
-SHELL ["/bin/bash", "-c"]
-
-ENV LANG C.UTF-8
-ENV LANGUAGE en_US
+ENV LANG=C.UTF-8 \
+    LANGUAGE=en_US \
+    PYTHONPATH="/root/workspace/src:$PYTHONPATH"
 
 WORKDIR /root/workspace
 
-# Poetryのインストールと設定
-ENV POETRY_HOME=/opt/poetry
-RUN curl -sSL https://install.python-poetry.org | python3 - && \
-    ln -s /opt/poetry/bin/poetry /usr/local/bin/poetry
-
-COPY pyproject.toml poetry.lock poetry.toml $WORKDIR/
-
-ENV PYTHONPATH "/root/workspace/src:$PYTHONPATH"
-
-RUN poetry install --no-root
-
-# 環境変数の設定
-COPY .env $WORKDIR/
-RUN source $WORKDIR/.env
-
-RUN python -m ipykernel install --user --name python3.10 --display-name "Python 3.10.12"
-
-# libGLのインストール(opencvのため)
+# システム依存のライブラリをインストール
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
+
+# pipをアップグレードし、必要なパッケージをインストール
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir notebook==6.4.6 jupyter_contrib_nbextensions jupyter_nbextensions_configurator
+
+# Jupyterのnbextensionsをインストールし、nbextensions_configuratorを有効化
+RUN jupyter contrib nbextension install --system && \
+    jupyter nbextensions_configurator enable --system
+
+# 特定のnbextensionsを有効にする
+RUN jupyter nbextension enable codefolding/main && \
+    jupyter nbextension enable contrib_nbextensions_help_item/main && \
+    jupyter nbextension enable code_font_size/code_font_size && \
+    jupyter nbextension enable collapsible_headings/main && \
+    jupyter nbextension enable move_selected_cells/main && \
+    jupyter nbextension enable printview/main
+
+# Poetryをインストール
+RUN pip install poetry
+
+# pyproject.toml、poetry.lock、poetry.tomlをコピーする
+COPY pyproject.toml poetry.lock poetry.toml $WORKDIR/
+
+RUN poetry install --no-root
+
+RUN python -m ipykernel install --user --name python3.10 --display-name "Python 3.10.12"
