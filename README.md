@@ -46,7 +46,7 @@ docker-compose exec project
 run with `./cfg/demo1.yml`
 
 ```sh
-python3 src/main.py -c demo1
+python3 blob_effect/main.py -c demo1
 ```
 
 |      Option       | Default | Description                                     |
