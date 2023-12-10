@@ -5,7 +5,9 @@ from blob_effect.service.vision.Effect.BlobEffect.spline import catmull_rom_spli
 
 
 class Blob:
-    def __init__(self, img, x, y, col, r, dense, thickness, is_fill=False):
+    def __init__(
+        self, img, x, y, col, r, dense, thickness, is_fill=False, is_square=False
+    ):
         """Blob
 
         Args:
@@ -17,6 +19,7 @@ class Blob:
             dense (int): blob毎の点の数
             thickness (int): 線の太さ
             is_fill (bool): 塗りつぶすかどうか(default: False)
+            is_square (bool): 正方形にするかどうか(default: False)
         """
         self.img = img
         self.x = x
@@ -26,12 +29,13 @@ class Blob:
         self.thickness = thickness
         self.col = col
         self.is_fill = is_fill
+        self.is_square = is_square
 
         self.starting_angle = np.random.uniform(0, 2 * np.pi)
-        self.diffX = np.random.uniform(0.3, 1.8)
-        self.diffY = np.random.uniform(0.3, 1.8)
-        self.offsetX = np.random.uniform(-self.r / 2, self.r / 2)
-        self.offsetY = np.random.uniform(-self.r / 2, self.r / 2)
+        self.dX = np.random.uniform(0.3, 1.8)
+        self.dY = self.dX if self.is_square else np.random.uniform(0.3, 1.8)
+        self.offsetX = np.random.uniform(-self.r * 2, self.r * 2)
+        self.offsetY = np.random.uniform(-self.r * 2, self.r * 2)
 
         self.dense = int(np.ceil(self.r * 3) % 360)
 
@@ -45,8 +49,8 @@ class Blob:
     def setup(self):
         """blobを更新する"""
         angles = np.linspace(0, 2 * np.pi, self.dense, endpoint=False)
-        xs = np.sin(np.sin(np.cos(angles))) * self.r + self.x + self.offsetX
-        ys = np.sin(np.sin(np.sin(angles))) * self.r + self.y + self.offsetY
+        xs = np.sin(np.sin(np.cos(angles))) * self.r * self.dX + self.x + self.offsetX
+        ys = np.sin(np.sin(np.sin(angles))) * self.r * self.dY + self.y + self.offsetY
         self.pts = np.c_[xs, ys]
 
     def show(self):

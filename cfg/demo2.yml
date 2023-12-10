@@ -33,11 +33,12 @@
       ID: 2
       PARAM:
         IMAGE: BlobEffect.1
-        BLOB_NUM: 30 # number of blobs
+        BLOB_NUM: 20 # number of blobs
         RADIUS: # radius of blobs
           MIN: 10
           MAX: 20
         IS_FILL: True
+        IS_SQUARE: True
 - # save
   TASK: utils.Save.SaveImage
   PARAM:
