@@ -8,3 +8,4 @@ services:
       - .env
     tty: true # retain container up
     command: /bin/bash
+    shm_size: $DOCKER_SHM_SIZE

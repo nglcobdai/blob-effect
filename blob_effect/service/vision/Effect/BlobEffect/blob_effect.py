@@ -24,6 +24,7 @@ class BlobEffect:
                     "RADIUS": radius
                     "DENSE": dense
                     "THICKNESS": thickness
+                    "IS_FILL": is_fill
                 }
                 TASK (str): task name
                 blob_num (int): blob num (default: 100)
@@ -48,12 +49,16 @@ class BlobEffect:
                     }
                     min (int): min thickness (default: 1)
                     max (int): max thickness (default: 3)
+                is_fill (bool): fill (default: False)
+                is_square (bool): square (default: False)
         """
         self.cfg = cfg
         self.img = deepcopy(results[cfg.get("IMAGE")])
         self.height, self.width, _ = self.img.shape
 
         self.n = self.cfg.get("BLOB_NUM", 100)
+        self.is_fill = self.cfg.get("IS_FILL", False)
+        self.is_square = self.cfg.get("IS_SQUARE", False)
 
         self.blobs = []
 
@@ -85,7 +90,17 @@ class BlobEffect:
             thickness = random.randint(thickness_mn, thickness_mx)
 
             self.blobs.append(
-                Blob(self.img, pos_x, pos_y, color, radius, dense, thickness)
+                Blob(
+                    self.img,
+                    pos_x,
+                    pos_y,
+                    color,
+                    radius,
+                    dense,
+                    thickness,
+                    self.is_fill,
+                    self.is_square,
+                )
             )
 
     def draw(self):

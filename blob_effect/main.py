@@ -5,12 +5,10 @@ from blob_effect.script.pipeline import load_pipeline
 
 def main():
     args = vars(get_args())
-    config = load_config(args['config'])
+    config = load_config(args["config"])
 
     pipeline = load_pipeline(config)
     pipeline()
-
-    # blob_effect(args, config)
 
 
 if __name__ == "__main__":

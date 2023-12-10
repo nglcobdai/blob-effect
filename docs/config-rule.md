@@ -61,6 +61,26 @@ PARAM:
   PATH: /output/demo1.png
 ```
 
+### Show/ShowImage
+
+#### 概要
+
+- `ShowImage` は画像を表示するタスク
+
+#### パラメータ一覧
+
+| パラメータ名 | 説明            | デフォルト値 | 備考 |
+| :----------- | :-------------- | :----------- | ---- |
+| `IMAGE`      | 使用画像の`KEY` | ---          |      |
+
+#### 設定例
+
+```yaml
+TASK: utils.Show.ShowImage
+PARAM:
+  IMAGE: LoadImage
+```
+
 ---
 
 ## vision 系
@@ -107,13 +127,14 @@ PARAM:
 
 #### パラメータ一覧
 
-| パラメータ名 | 説明                               | デフォルト値 | 備考                   |
-| :----------- | :--------------------------------- | :----------- | ---------------------- |
-| `IMAGE`      | 使用画像の`KEY`                    | ---          |                        |
-| `BLOB_NUM`   | Blob の数                          | 100          |                        |
-| `RADIUS`     | Blob の半径                        | ---          |                        |
-| `DENSE`      | 各 Blob 描画のためのプロットの個数 | ---          | 大きいほど描画速度低下 |
-| `THICKNESS`  | Blob の太さ                        | ---          |                        |
+| パラメータ名 | 説明                        | デフォルト値 | 備考                    |
+| :----------- | :-------------------------- | :----------- | ----------------------- |
+| `IMAGE`      | 使用画像の`KEY`             | ---          |                         |
+| `BLOB_NUM`   | Blob の数                   | 100          |                         |
+| `RADIUS`     | Blob の半径                 | ---          |                         |
+| `THICKNESS`  | Blob の太さ                 | ---          |                         |
+| `IS_FILL`    | Blob を塗りつぶすかどうか   | `True`       | 選択肢: `True`, `False` |
+| `IS_SQUARE`  | Blob を正方形にするかどうか | `True`       | 選択肢: `True`, `False` |
 
 #### 設定例
 
@@ -128,12 +149,11 @@ PARAM:
   RADIUS:
     MIN: 5
     MAX: 30
-  DENSE:
-    MIN: 10
-    MAX: 50
   THICKNESS:
     MIN: 1
     MAX: 3
+  IS_FILL: True
+  IS_SQUARE: True
 ```
 
 ---
@@ -211,9 +231,6 @@ PARAM:
         RADIUS:
           MIN: 5
           MAX: 30
-        DENSE:
-          MIN: 10
-          MAX: 50
         THICKNESS:
           MIN: 1
           MAX: 3
@@ -225,12 +242,11 @@ PARAM:
         RADIUS:
           MIN: 20
           MAX: 30
-        DENSE:
-          MIN: 10
-          MAX: 100
         THICKNESS:
           MIN: 5
           MAX: 10
+        IS_FILL: True
+        IS_SQUARE: True
 - TASK: utils.Save.SaveImage
   PARAM:
     IMAGE: BlobEffect.2
