@@ -32,7 +32,7 @@
 ### 1. Clone Repository
 
 ```sh
-$ git clone -b v1.1.1 https://github.com/nglcobdai/blob-effect.git
+$ git clone -b v1.1.2 https://github.com/nglcobdai/blob-effect.git
 $ cd blob-effect
 ```
 
