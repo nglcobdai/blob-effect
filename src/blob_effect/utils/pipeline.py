@@ -7,20 +7,22 @@ class Pipeline:
     def __call__(recipe):
         logger.info(messenger("INFO", "BLE-I0001"))
 
-        _output = None
-        for info in recipe():
-            info.input = _output
-            _output = Pipeline._call_task(info).output
+        Pipeline._execute(recipe)
 
         logger.info(messenger("INFO", "BLE-I0002"))
 
     @staticmethod
-    def _forward(process):
-        pass
+    def _execute(recipe):
+        for _, info in recipe():
+            Pipeline._setup(recipe, info)
+            info.execute()
 
     @staticmethod
-    def _call_task(info):
-        return info.execute()
+    def _setup(recipe, info):
+        for _id, _info in recipe():
+            if _id == info.target:
+                info.input = _info.output
+                break
 
 
 def pipeline(recipe):

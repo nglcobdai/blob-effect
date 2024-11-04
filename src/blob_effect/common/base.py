@@ -16,13 +16,21 @@ class BaseInfo(BaseModel):
     _INPUT: np.ndarray = None
     _OUTPUT: np.ndarray = None
 
-    ID: int = 0
-    TARGET: int = 0
+    _ID: str = None
+    _TARGET: str = None
+
+    _UUID: str = None
+    _UUID_TARGET: str = None
 
     model_config = ConfigDict(
         arbitrary_types_allowed=True,  # Allow arbitrary types
         validate_assignment=True,  # Validate assignment
     )
+
+    def __init__(self, id: str = None, target: str = None, **data):
+        super().__init__(**data)
+        self.id = id
+        self.target = target
 
     @property
     def input(self):
@@ -40,6 +48,38 @@ class BaseInfo(BaseModel):
     def output(self, value):
         self._OUTPUT = value
 
+    @property
+    def id(self):
+        return self._ID
+
+    @id.setter
+    def id(self, value):
+        self._ID = value
+
+    @property
+    def target(self):
+        return self._TARGET
+
+    @target.setter
+    def target(self, value):
+        self._TARGET = value
+
+    @property
+    def uuid(self):
+        return self._UUID
+
+    @uuid.setter
+    def uuid(self, value):
+        self._UUID = value
+
+    @property
+    def uuid_target(self):
+        return self._UUID_TARGET
+
+    @uuid_target.setter
+    def uuid_target(self, value):
+        self._UUID_TARGET = value
+
     def execute(self):
         module = getattr(import_module(self._MODULE), self._CLASS)
         return module.execute(self)
@@ -53,6 +93,8 @@ class BaseInfo(BaseModel):
         data = self.model_dump()
         data.update(
             {
+                "UUID": self.uuid,
+                "UUID_TARGET": self.uuid_target,
                 "TASK": self._TASK,
                 "INPUT": self.input.shape if self.input is not None else None,
                 "OUTPUT": self.output.shape if self.output is not None else None,
@@ -82,6 +124,7 @@ class BaseEffect:
 
         output = cls._execute(info)
 
+        logger.debug(info.export())
         logger.info(mes_e)
 
         return output
