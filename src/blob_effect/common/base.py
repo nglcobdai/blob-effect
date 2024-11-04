@@ -84,13 +84,13 @@ class BaseInfo(BaseModel):
         module = getattr(import_module(self._MODULE), self._CLASS)
         return module.execute(self)
 
-    def export(self):
+    def export(self, **kwargs):
         """Get handler parameters
 
         Returns:
             Dict: Handler parameters
         """
-        data = self.model_dump()
+        data = self.model_dump(**kwargs)
         data.update(
             {
                 "UUID": self.uuid,

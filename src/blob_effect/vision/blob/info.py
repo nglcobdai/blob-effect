@@ -94,7 +94,7 @@ class BlobEffectInfo(BaseInfo):
         self._IS_SQUARE = value
 
     def export(self):
-        data = super().export()
+        data = super().export(exclude={"_blobs"})
         data.update(
             {
                 "BLOB_NUM": self._BLOB_NUM,

@@ -12,7 +12,6 @@ class BlobEffect(BaseEffect):
 
     @staticmethod
     def _execute(bi: BlobEffectInfo):
-        bi.height, bi.width, _ = bi.input.shape
 
         BlobEffect._setup(bi)
         BlobEffect._draw(bi)
@@ -23,13 +22,14 @@ class BlobEffect(BaseEffect):
     def _setup(bi: BlobEffectInfo):
         """blobをセットアップする"""
         img = deepcopy(bi.input)
+        height, width, _ = img.shape
         radius_mn, radius_mx = bi.radius.min, bi.radius.max
         dense_mn, dense_mx = bi.dense.min, bi.dense.max
         thickness_mn, thickness_mx = bi.thickness.min, bi.thickness.max
 
         for _ in range(bi.blob_num):
-            pos_x = random.randint(0, bi.width - 1)
-            pos_y = random.randint(0, bi.height - 1)
+            pos_x = random.randint(0, width - 1)
+            pos_y = random.randint(0, height - 1)
             color = tuple(int(val) for val in img[pos_y, pos_x])
             radius = random.randint(radius_mn, radius_mx)
             dense = random.randint(dense_mn, dense_mx)
