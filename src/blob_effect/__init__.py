@@ -1,4 +1,4 @@
-from blob_effect.common import Dense, Radius, Thickness
+from blob_effect.common import RangeComponents
 from blob_effect.io import LoadInfo, SaveInfo
 from blob_effect.utils import Recipe, pipeline
 from blob_effect.vision import BlobEffectInfo, ResizeInfo

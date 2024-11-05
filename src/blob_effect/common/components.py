@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict
 
 
-class BaseComponent(BaseModel):
+class RangeComponents(BaseModel):
 
     _MIN: int
     _MAX: int
@@ -31,21 +31,3 @@ class BaseComponent(BaseModel):
 
     def export(self):
         return {"MIN": self.min, "MAX": self.max}
-
-
-class Radius(BaseComponent):
-
-    _MIN: int = 5
-    _MAX: int = 30
-
-
-class Dense(BaseComponent):
-
-    _MIN: int = 10
-    _MAX: int = 50
-
-
-class Thickness(BaseComponent):
-
-    _MIN: int = 1
-    _MAX: int = 3

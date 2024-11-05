@@ -1,7 +1,7 @@
 from pydantic import ConfigDict
 
 from blob_effect.common.base import BaseInfo
-from blob_effect.common.components import Dense, Radius, Thickness
+from blob_effect.common.components import RangeComponents
 from blob_effect.vision.blob.blob import Blob
 
 
@@ -13,9 +13,9 @@ class BlobEffectInfo(BaseInfo):
     _MES_INFO_E: dict = {"section": "INFO", "code": "BLE-I0010"}
 
     _BLOB_NUM: int
-    _RADIUS: Radius
-    _DENSE: Dense
-    _THICKNESS: Thickness
+    _RADIUS: RangeComponents
+    _DENSE: RangeComponents
+    _THICKNESS: RangeComponents
     _IS_FILL: bool
     _IS_SQUARE: bool
 
@@ -28,9 +28,9 @@ class BlobEffectInfo(BaseInfo):
     def __init__(
         self,
         blob_num: int = 100,
-        radius: Radius = Radius(),
-        dense: Dense = Dense(),
-        thickness: Thickness = Thickness(),
+        radius: RangeComponents = RangeComponents(min=5, max=30),
+        dense: RangeComponents = RangeComponents(min=10, max=50),
+        thickness: RangeComponents = RangeComponents(min=1, max=3),
         is_fill: bool = False,
         is_square: bool = False,
         **data,
@@ -58,7 +58,7 @@ class BlobEffectInfo(BaseInfo):
         return self._RADIUS
 
     @radius.setter
-    def radius(self, value: Radius):
+    def radius(self, value: RangeComponents):
         self._RADIUS = value
 
     @property
@@ -66,7 +66,7 @@ class BlobEffectInfo(BaseInfo):
         return self._DENSE
 
     @dense.setter
-    def dense(self, value: Dense):
+    def dense(self, value: RangeComponents):
         self._DENSE = value
 
     @property
@@ -74,7 +74,7 @@ class BlobEffectInfo(BaseInfo):
         return self._THICKNESS
 
     @thickness.setter
-    def thickness(self, value: Thickness):
+    def thickness(self, value: RangeComponents):
         self._THICKNESS = value
 
     @property

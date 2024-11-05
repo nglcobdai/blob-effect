@@ -1,1 +1,1 @@
-from blob_effect.common.components import Dense, Radius, Thickness
+from blob_effect.common.components import RangeComponents
