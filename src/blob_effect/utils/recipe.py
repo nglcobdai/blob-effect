@@ -1,4 +1,5 @@
 from uuid import uuid4
+
 from blob_effect.bootstrap import logger
 
 

@@ -1,7 +1,6 @@
 from blob_effect import (
     BlobEffectInfo,
     LoadInfo,
-    RangeComponents,
     Recipe,
     ResizeInfo,
     SaveInfo,
