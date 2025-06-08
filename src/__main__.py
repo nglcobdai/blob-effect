@@ -22,6 +22,7 @@ def main():
         ),
         SaveInfo(output_path="/root/workspace/output/demo1.png"),
     )
+    logger.info(recipe.export())
 
     pipeline(recipe)
 
