@@ -1,7 +1,9 @@
+from importlib import import_module
+
 import numpy as np
 from pydantic import BaseModel, ConfigDict
+
 from blob_effect.bootstrap import logger, messenger
-from importlib import import_module
 
 
 class BaseInfo(BaseModel):
@@ -31,6 +33,10 @@ class BaseInfo(BaseModel):
         super().__init__(**data)
         self.id = id
         self.target = target
+        # **dataを使って他の属性を初期化する
+        for key, value in data.items():
+            if hasattr(self, key):
+                setattr(self, key, value)
 
     @property
     def input(self):
@@ -139,4 +145,5 @@ class BaseEffect:
         Returns:
             BaseInfo: Base information
         """
-        pass
+        info.output = info.input  # Default behavior, just pass input to output
+        return info

@@ -1,7 +1,6 @@
 from blob_effect import (
     BlobEffectInfo,
     LoadInfo,
-    RangeComponents,
     Recipe,
     ResizeInfo,
     SaveInfo,
@@ -23,6 +22,7 @@ def main():
         ),
         SaveInfo(output_path="/root/workspace/output/demo1.png"),
     )
+    logger.info(recipe.export())
 
     pipeline(recipe)
 

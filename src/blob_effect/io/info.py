@@ -1,5 +1,6 @@
-from blob_effect.common.base import BaseInfo
 from pathlib import Path
+
+from blob_effect.common.base import BaseInfo
 
 
 class BaseIOInfo(BaseInfo):
