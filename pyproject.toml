@@ -16,7 +16,7 @@ opencv-python = "^4.8.1.78"
 pyyaml = "^6.0.1"
 tqdm = "^4.66.1"
 matplotlib = "^3.8.1"
-nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai-utils.git", rev = "v0.2.0" }
+nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai-utils.git", tag = "v0.2.0"}
 
 
 [tool.poetry.group.dev.dependencies]
