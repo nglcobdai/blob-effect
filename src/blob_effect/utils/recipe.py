@@ -1,10 +1,12 @@
 from uuid import uuid4
+
 from blob_effect.bootstrap import logger
 
 
 class Recipe:
 
     def __init__(self, *args):
+        self.last_id = None
         self.recipe = dict()
         self._setup(*args)
 
@@ -21,6 +23,7 @@ class Recipe:
             self.id_check(info)
             self.target_check(info, self.recipe)
             self._add(info)
+        self.last_id = info.id
 
     @staticmethod
     def id_check(info):
@@ -43,3 +46,7 @@ class Recipe:
 
     def export(self):
         return [info.export() for info in self.recipe.values()]
+
+    def content(self):
+        """return the content of the recipe"""
+        return self.recipe
