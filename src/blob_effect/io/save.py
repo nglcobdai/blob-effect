@@ -50,7 +50,7 @@ class SaveImage(BaseEffect):
 
         img, path = si.input, si.output_path
 
-        img = Image.fromarray(img)
+        img = Image.fromarray(img, mode="RGB" if img.ndim == 3 else "L")
         img.save(path)
 
         return si

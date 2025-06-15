@@ -11,11 +11,13 @@ class ResizeInfo(BaseInfo):
 
     _WIDTH: int = 256
     _HEIGHT: int = 256
+    _KEEP_ASPECT_RATIO: bool = True
 
-    def __init__(self, width: int, height: int, **data):
+    def __init__(self, width: int, height: int, keep_aspect_ratio: bool = True, **data):
         super().__init__(**data)
         self._WIDTH = width
         self._HEIGHT = height
+        self._KEEP_ASPECT_RATIO = keep_aspect_ratio
 
     @property
     def width(self):
@@ -33,7 +35,21 @@ class ResizeInfo(BaseInfo):
     def height(self, value):
         self._HEIGHT = value
 
+    @property
+    def keep_aspect_ratio(self):
+        return self._KEEP_ASPECT_RATIO
+
+    @keep_aspect_ratio.setter
+    def keep_aspect_ratio(self, value):
+        self._KEEP_ASPECT_RATIO = value
+
     def export(self):
         data = super().export()
-        data.update({"WIDTH": self.width, "HEIGHT": self.height})
+        data.update(
+            {
+                "WIDTH": self.width,
+                "HEIGHT": self.height,
+                "KEEP_ASPECT_RATIO": self.keep_aspect_ratio,
+            }
+        )
         return data
