@@ -1,5 +1,12 @@
 from blob_effect import (
-    BlobEffectInfo, ExtractionInfo, LoadInfo, RangeComponents, Recipe, ResizeInfo, SaveInfo, pipeline,
+    BlobEffectInfo,
+    ExtractionInfo,
+    LoadInfo,
+    RangeComponents,
+    Recipe,
+    ResizeInfo,
+    SaveInfo,
+    pipeline,
 )
 from blob_effect.bootstrap import logger
 
