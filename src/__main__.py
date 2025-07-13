@@ -1,11 +1,5 @@
 from blob_effect import (
-    BlobEffectInfo,
-    LoadInfo,
-    Recipe,
-    ResizeInfo,
-    SaveInfo,
-    pipeline,
-    RangeComponents,
+    BlobEffectInfo, ExtractionInfo, LoadInfo, RangeComponents, Recipe, ResizeInfo, SaveInfo, pipeline,
 )
 from blob_effect.bootstrap import logger
 
@@ -20,14 +14,15 @@ def main():
     recipe = Recipe(
         LoadInfo(input_path="/root/workspace/data/demo1.png"),
         ResizeInfo(width=256, height=256),
+        ExtractionInfo(keep_background=False),
         BlobEffectInfo(
-            blob_num=200,
+            blob_num=500,
             radius=RangeComponents(min=20, max=25),
             thickness=RangeComponents(min=1, max=1),
-            is_fill=True,
+            is_fill=False,
             is_square=False,
         ),
-        ResizeInfo(width=w, height=h, keep_aspect_ratio=False),
+        ResizeInfo(width=w, height=h, keep_aspect_ratio=True),
         SaveInfo(output_path="/root/workspace/output/demo1.png"),
     )
     logger.info(recipe.export())
