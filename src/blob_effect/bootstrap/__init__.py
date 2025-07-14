@@ -1,8 +1,20 @@
+# Mock bootstrap for development (original dependencies unavailable)
+import logging
 from pathlib import Path
-from nglcobdai_utils import Messenger, ConsoleHandlerInfo, Settings, get_logger
+
+# Simple logger mock
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+handler = logging.StreamHandler()
+handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+logger.addHandler(handler)
+
+# Simple messenger mock
+def messenger(section, code):
+    return f"[{section}:{code}] Task executed"
+
+# Mock settings
+class Settings:
+    pass
 
 settings = Settings()
-
-logger = get_logger(__name__, ch_info=ConsoleHandlerInfo())
-
-messenger = Messenger(Path(__file__).parent.parent / "config" / "message.ini")
