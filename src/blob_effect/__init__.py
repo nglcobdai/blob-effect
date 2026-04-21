@@ -1,7 +1,7 @@
 from blob_effect.common import BaseInfo, RangeComponents
 from blob_effect.io import LoadInfo, SaveInfo
 from blob_effect.utils import Recipe, pipeline
-from blob_effect.vision import BlobEffectInfo, ResizeInfo
+from blob_effect.vision import BlobEffectInfo, ExtractionInfo, ResizeInfo
 
 __name__ = "blob-effect"
 __copyright__ = "2024 KodaiYamashita"

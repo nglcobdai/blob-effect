@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageOps
 
 from blob_effect.common.base import BaseEffect
 from blob_effect.io.info import BaseIOInfo
@@ -60,6 +60,12 @@ class LoadImage(BaseEffect):
         """
 
         img = Image.open(li.input_path).convert(li.mode)
+
+        # EXIF情報の回転データを考慮して画像を正しい向きで読み込む
+        exif = img.getexif()
+        if exif and 274 in exif and exif[274] != 1:
+            img = ImageOps.exif_transpose(img)
+
         img = np.array(img)  # (np.ndarray[H, W, C])
         li.output = img
 

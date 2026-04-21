@@ -18,16 +18,26 @@ class Resize(BaseEffect):
         """
         img = ri.input
         img = Image.fromarray(img)
-        width, height = img.size
+        original_width, original_height = img.size
+        target_width, target_height = ri.width, ri.height
 
-        size = (ri.width, ri.height)
+        if ri.keep_aspect_ratio:
+            # 縦横比を保ったままリサイズ
+            width_ratio = target_width / original_width
+            height_ratio = target_height / original_height
 
-        if width == height:
-            img = img.resize(size, Image.LANCZOS)
-        elif width < height:
-            img = img.resize((size[0], round(size[1] * height / width)), Image.LANCZOS)
+            # より小さい縮小率を使用して指定サイズ内に収める
+            resize_ratio = min(width_ratio, height_ratio)
+
+            new_width = int(original_width * resize_ratio)
+            new_height = int(original_height * resize_ratio)
         else:
-            img = img.resize((round(size[0] * width / height), size[1]), Image.LANCZOS)
+            # 強制的に指定サイズにリサイズ（縦横比無視）
+            new_width = target_width
+            new_height = target_height
+
+        # リサイズ実行
+        img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
         ri.output = np.array(img)
 

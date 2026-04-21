@@ -9,22 +9,28 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
-numpy = "^1.26.0"
-pillow = "^10.1.1"
+python = ">=3.11,<3.13"
+numpy = "^2.3.0"
+pillow = "^12.2.0"
 opencv-python-headless = "4.11.0.86"
 pyyaml = "^6.0.1"
 tqdm = "^4.66.1"
 matplotlib = "^3.8.1"
 nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai-utils.git", tag = "v0.2.1"}
+rembg = "^2.0.75"
+onnxruntime = "^1.22.1"
+urllib3 = ">=2.6.3,<3"
+requests = ">=2.33.0,<3"
+protobuf = ">=6.33.5,<8"
+fonttools = ">=4.60.2,<5"
 
 
 [tool.poetry.group.dev.dependencies]
 pep8 = "^1.7.1"
-black = "^24.3.0"
+black = "^26.3.1"
 flake8 = "^6.1.0"
 isort = "^5.12.0"
-pytest = "^8.3.2"
+pytest = "^9.0.3"
 
 [build-system]
 requires = ["poetry-core"]
@@ -32,3 +38,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.flake8]
 max-line-length = 120
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
