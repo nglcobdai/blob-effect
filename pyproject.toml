@@ -19,10 +19,10 @@ matplotlib = "^3.8.1"
 nglcobdai-utils = {git = "https://github.com/nglcobdai/nglcobdai-utils.git", tag = "v0.2.1"}
 rembg = "^2.0.75"
 onnxruntime = "^1.22.1"
-urllib3 = ">=2.6.3"
-requests = ">=2.33.0"
-protobuf = ">=6.33.5"
-fonttools = ">=4.60.2"
+urllib3 = ">=2.6.3,<3"
+requests = ">=2.33.0,<3"
+protobuf = ">=6.33.5,<8"
+fonttools = ">=4.60.2,<5"
 
 
 [tool.poetry.group.dev.dependencies]
