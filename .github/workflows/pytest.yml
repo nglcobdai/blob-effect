@@ -26,6 +26,12 @@ jobs:
         run: |
           docker compose up -d dev
 
+      - name: Install dependencies
+        # docker-compose mounts the repo onto /root/workspace, which masks the
+        # image's pre-built .venv. Re-install inside the running container.
+        run: |
+          docker compose exec -T dev poetry install --no-root
+
       - name: Test with pytest
         run: |
           docker compose exec -T dev poetry run pytest -v
