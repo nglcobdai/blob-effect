@@ -20,9 +20,12 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /root/workspace
 
 # Poetryのインストールと依存関係のインストール
+# Pin Poetry to the version that generated poetry.lock (see lockfile header)
+# to keep image builds reproducible.
+ARG POETRY_VERSION=2.3.4
 RUN apt-get update && apt-get install -y pipx \
     && rm -rf /var/lib/apt/lists/* \
-    && pipx install poetry \
+    && pipx install "poetry==${POETRY_VERSION}" \
     && ln -s /root/.local/bin/poetry /usr/local/bin/poetry
 
 # pyproject.toml、poetry.lock、poetry.tomlをコピーする
