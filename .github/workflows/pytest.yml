@@ -1,0 +1,36 @@
+name: pytest
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          cp .env.example .env
+
+      - name: Build the dev container
+        run: |
+          docker compose build dev
+
+      - name: Start the dev container
+        run: |
+          docker compose up -d dev
+
+      - name: Test with pytest
+        run: |
+          docker compose exec -T dev poetry run pytest -v
+
+      - name: Clean up
+        if: always()
+        run: |
+          docker compose down
