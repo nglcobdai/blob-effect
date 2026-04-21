@@ -32,4 +32,4 @@ COPY pyproject.toml poetry.lock poetry.toml $WORKDIR/
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN poetry lock && poetry install --no-root
+RUN poetry install --no-root
