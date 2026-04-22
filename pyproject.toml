@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "blob-effect"
-version = "v2.0.6"
+version = "v2.1.0"
 description = ""
 authors = ["Kodai YAMASHITA <nglcobdai@gmail.com>"]
 readme = "README.md"
