@@ -12,7 +12,10 @@ RUN apt-get update && apt-get install -y python3.12 python3-pip python3.12-venv 
     && rm -rf /var/lib/apt/lists/*
 
 # システム依存のライブラリをインストール
+# git: required by Poetry to install the nglcobdai-utils VCS dependency
+# (system-git-client is enabled in poetry.toml).
 RUN apt-get update && apt-get install -y \
+    git \
     libgl1 \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*

@@ -1,3 +1,8 @@
+# Use the system git binary for VCS dependencies. Poetry's bundled dulwich
+# generates a malformed ref (refs/tags//<tag>) when resolving a git "tag"
+# dependency, which dulwich >=1.2 rejects with RefFormatError.
+system-git-client = true
+
 [virtualenvs]
 create = true
 in-project = true
